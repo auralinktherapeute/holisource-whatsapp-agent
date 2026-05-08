@@ -1,0 +1,22 @@
+# Dockerfile pour Holisource WhatsApp Agent
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Installa dépendances système
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copie les requirements
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copie le code de l'application
+COPY . .
+
+# Expose le port
+EXPOSE 8000
+
+# Comando de démarrage
+CMD ["uvicorn", "agent.main:app", "--host", "0.0.0.0", "--port", "8000"]

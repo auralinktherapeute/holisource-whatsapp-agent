@@ -1,0 +1,200 @@
+═══════════════════════════════════════════════════════════════════════════════
+🎉  HOLISOURCE WHATSAPP AGENT — ADAPTATION COMPLÈTE
+═══════════════════════════════════════════════════════════════════════════════
+
+📁 Localisation : /Users/geraldhenry/claude/holisource-whatsapp-agent
+
+✅ STATUS : PRÊT POUR MISE EN PLACE
+
+═══════════════════════════════════════════════════════════════════════════════
+📋 FICHIERS CRÉÉS (23)
+═══════════════════════════════════════════════════════════════════════════════
+
+📖 DOCUMENTATION (Lis dans cet ordre):
+  1. ⭐ QUICKSTART.md         — Démarrer en 5 minutes
+  2. 📘 README.md            — Vue d'ensemble du projet
+  3. 🛠️  SETUP.md             — Guide étape par étape complet
+  4. 📑 INDEX.md             — Structure du code & navigation
+  5. 📝 CLAUDE.md            — Instructions pour Claude Code
+  6. ✅ DEPLOYMENT_SUMMARY.md — Ce que tu vas faire
+
+🧠 CODE PYTHON (Production-ready):
+  • agent/main.py              — Serveur FastAPI + webhooks
+  • agent/brain.py             — Claude AI + routage intents
+  • agent/holisource_tools.py  — Logique métier Holisource
+  • agent/supabase_client.py   — Client Supabase async
+  • agent/memory.py            — Historique conversations
+  • agent/providers/meta.py    — Intégration Meta Cloud API
+  • agent/providers/twilio.py  — Intégration Twilio
+  • agent/providers/base.py    — Interface abstraite
+
+⚙️  CONFIGURATION:
+  • config/holisource_config.yaml    — Config globale
+  • config/prompts_holisource.yaml   — System prompt Sofia
+  • .env.example                     — Template secrets (À REMPLIR!)
+  • requirements.txt                 — Dépendances Python
+
+🧪 TESTS:
+  • tests/test_local.py              — Chat dans le terminal
+
+🐳 DÉPLOIEMENT:
+  • Dockerfile                       — Image Docker
+  • docker-compose.yml               — Orchestration
+  • .gitignore                       — Fichiers à ignorer
+
+═══════════════════════════════════════════════════════════════════════════════
+🚀 DÉMARRAGE RAPIDE (3 COMMANDES)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Copier la configuration:
+   $ cp .env.example .env
+
+2. Installer les dépendances:
+   $ pip install -r requirements.txt
+
+3. Lancer le test local:
+   $ python tests/test_local.py
+
+Puis converser avec Sofia comme si tu étais un client!
+
+═══════════════════════════════════════════════════════════════════════════════
+🔑 CLÉS API NÉCESSAIRES (À obtenir)
+═══════════════════════════════════════════════════════════════════════════════
+
+OBLIGATOIRES:
+  • ANTHROPIC_API_KEY          → https://console.anthropic.com/
+  • SUPABASE_URL/KEY           → Déjà configurés (holisource DB)
+  • WHATSAPP_PROVIDER          → Choix: "meta" ou "twilio"
+
+SI META CLOUD API:
+  • META_ACCESS_TOKEN          → https://developers.facebook.com/
+  • META_PHONE_NUMBER_ID
+  • META_VERIFY_TOKEN
+
+SI TWILIO:
+  • TWILIO_ACCOUNT_SID         → https://www.twilio.com/
+  • TWILIO_AUTH_TOKEN
+  • TWILIO_PHONE_NUMBER
+
+OPTIONNELS:
+  • RESEND_API_KEY             → https://resend.com/ (emails)
+  • MISTRAL_API_KEY            → https://console.mistral.ai/ (modération)
+
+═══════════════════════════════════════════════════════════════════════════════
+🎯 FONCTIONNALITÉS (Sofia peut...)
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Rechercher des thérapeutes (spécialité, localité, budget, modalité)
+✅ Agendar les rendez-vous (avec confirmation email + SMS)
+✅ Répondre aux questions sur l'holistique
+✅ Qualifier les leads (sincérité, engagement)
+✅ Escalader aux vendeurs si besoin
+✅ Proposer l'inscription aux thérapeutes
+
+Intentions détectées par Claude:
+  • SEARCH   — "Je cherche un reiki à Strasbourg"
+  • BOOK     — "Je veux agendar un RDV"
+  • QUESTION — "Qu'est-ce que l'holistique?"
+  • REGISTER — "Je suis thérapeute"
+  • ESCALATE — "Je veux parler à un humain"
+  • QUALIFY  — Analyze lead sincerity
+
+═══════════════════════════════════════════════════════════════════════════════
+📊 ARCHITECTURE (Comment ça marche)
+═══════════════════════════════════════════════════════════════════════════════
+
+Client WhatsApp
+       ↓
+Meta Cloud API / Twilio
+       ↓
+FastAPI Server (agent/main.py)
+       ↓
+Claude AI + Intent Detection (agent/brain.py)
+       ↓
+Holisource Tools (recherche, RDV, qualification)
+       ↓
+Supabase (therapeutes, rendez_vous, chat_logs)
+       ↓
+Resend (emails) + Twilio (SMS)
+
+═══════════════════════════════════════════════════════════════════════════════
+📚 PROCHAINES ÉTAPES
+═══════════════════════════════════════════════════════════════════════════════
+
+PHASE 1 (LOCAL) — 30 minutes:
+  1. Éditer .env avec tes clés API
+  2. python tests/test_local.py (chat terminal)
+  3. Tester différents scénarios
+
+PHASE 2 (SERVEUR) — 10 minutes:
+  1. uvicorn agent.main:app --reload --port 8000
+  2. curl http://localhost:8000/health
+  3. Vérifier que tout fonctionne
+
+PHASE 3 (WHATSAPP) — Configurer le webhook:
+  Meta: https://developers.facebook.com → WhatsApp → Configuration
+  Twilio: https://console.twilio.com → WhatsApp Sandbox
+
+PHASE 4 (PRODUCTION) — Déployer sur Railway:
+  1. git push vers GitHub
+  2. Connecter Railway (déploiement auto)
+  3. Configurer les variables d'environnement
+
+═══════════════════════════════════════════════════════════════════════════════
+✅ CHECKLIST AVANT PRODUCTION
+═══════════════════════════════════════════════════════════════════════════════
+
+- [ ] Édité .env avec toutes les clés API
+- [ ] Testé localement (python tests/test_local.py)
+- [ ] Lancer le serveur (uvicorn agent.main:app)
+- [ ] Health check OK (curl http://localhost:8000/health)
+- [ ] Configuré le webhook WhatsApp (Meta ou Twilio)
+- [ ] Reçu un message de test sur WhatsApp
+- [ ] Réponse correcte reçue
+- [ ] Push vers GitHub
+- [ ] Connecté Railway
+- [ ] Variables d'environnement dans Railway
+- [ ] Testé en production (vrai message WhatsApp)
+
+═══════════════════════════════════════════════════════════════════════════════
+🔐 SÉCURITÉ
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ .env dans .gitignore        — Secrets jamais versionés
+✅ RLS Supabase actif          — Données protégées
+✅ Validation webhook          — VERIFY_TOKEN
+✅ Variables d'environnement   — Tous les secrets
+✅ No hardcoded API keys       — Jamais!
+
+═══════════════════════════════════════════════════════════════════════════════
+📞 SUPPORT & QUESTIONS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Lis QUICKSTART.md (5 minutes)
+2. Lis SETUP.md (guide complet)
+3. Lis INDEX.md (structure du code)
+4. Voir les docstrings dans les fichiers .py
+5. Contact: contact@holisource.com
+
+═══════════════════════════════════════════════════════════════════════════════
+🎓 APPRENDRE LE CODE
+═══════════════════════════════════════════════════════════════════════════════
+
+Si tu veux comprendre:
+  • Agent global            → Lis README.md + INDEX.md
+  • Configuration           → Lis SETUP.md
+  • FastAPI server          → Lis agent/main.py
+  • Claude AI               → Lis agent/brain.py
+  • Logique métier          → Lis agent/holisource_tools.py
+  • Database                → Lis agent/supabase_client.py
+  • Historique              → Lis agent/memory.py
+  • WhatsApp integration    → Lis agent/providers/meta.py ou twilio.py
+
+═══════════════════════════════════════════════════════════════════════════════
+✨ PRÊT À DÉMARRER!
+═══════════════════════════════════════════════════════════════════════════════
+
+👉 Commence par QUICKSTART.md pour les 5 premières minutes
+   Puis SETUP.md pour une configuration complète
+
+Bonne chance! 🚀

@@ -1,0 +1,67 @@
+# Configuration Holisource WhatsApp Agent
+# Adapté pour l'annuaire de thérapeutes holistiques en Alsace
+
+holisource:
+  nom_agent: "Sofia"
+  slogan: "Votre assistante pour trouver le bon thérapeute holistique"
+
+  region: "Alsace"
+  departements:
+    - "67"  # Bas-Rhin
+    - "68"  # Haut-Rhin
+
+  specialites_principales:
+    - "coaching-holistique"
+    - "meditation"
+    - "reiki"
+    - "massage-bien-etre"
+    - "naturopathie"
+    - "yoga-therapeutique"
+    - "acupuncture"
+    - "aromatherapie"
+
+supabase:
+  project_id: "dqmujlqxpmcwscztrrdt"
+  api_url: "https://dqmujlqxpmcwscztrrdt.supabase.co"
+  # Les clés viennent de .env (SUPABASE_URL, SUPABASE_KEY)
+
+  tables:
+    therapeutes: "therapeutes"
+    rendez_vous: "rendez_vous"
+    disponibilites: "disponibilites"
+    chat_logs: "chat_logs"
+    notifications: "notifications"
+    avis: "avis"
+
+integrations:
+  calendly:
+    enabled: true
+    timeout_seconds: 30
+
+  resend:
+    enabled: true
+    from_email: "holisource@resend.dev"
+    reply_to: "contact@holisource.com"
+
+  twilio:
+    enabled: true
+    sms_timeout_seconds: 30
+
+  mistral_moderation:
+    enabled: true
+    model: "mistral-small-latest"
+    score_threshold: 0.7  # Score de qualification minimum
+
+whatsapp_provider: "meta"  # ou "twilio"
+
+features:
+  auto_confirm_rdv: true
+  send_reminders: true  # Rappel 24h avant RDV
+  moderate_leads: true  # Modération Mistral sur les leads
+  collect_feedback: true  # Collecte d'avis post-RDV
+  escalate_complex: true  # Escalade aux vendeurs si besoin
+
+metadata:
+  version: "1.0"
+  created_at: "2026-05-08"
+  adapted_from: "AgentKit"

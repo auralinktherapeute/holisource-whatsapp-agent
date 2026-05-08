@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  agent:
+    build: .
+    ports:
+      - "${PORT:-8000}:8000"
+    environment:
+      # Anthropic
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+
+      # Supabase
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}
+
+      # WhatsApp Provider
+      WHATSAPP_PROVIDER: ${WHATSAPP_PROVIDER:-meta}
+
+      # Meta Cloud API
+      META_ACCESS_TOKEN: ${META_ACCESS_TOKEN}
+      META_PHONE_NUMBER_ID: ${META_PHONE_NUMBER_ID}
+      META_VERIFY_TOKEN: ${META_VERIFY_TOKEN}
+
+      # Twilio
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      TWILIO_PHONE_NUMBER: ${TWILIO_PHONE_NUMBER}
+
+      # Resend
+      RESEND_API_KEY: ${RESEND_API_KEY}
+
+      # Mistral
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY}
+
+      # Calendly
+      CALENDLY_API_KEY: ${CALENDLY_API_KEY}
+
+      # Server
+      PORT: 8000
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+
+    volumes:
+      - ./knowledge:/app/knowledge
+      - ./config:/app/config
+      - ./logs:/app/logs
+
+    restart: unless-stopped
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
