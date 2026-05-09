@@ -15,8 +15,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copie le code de l'application
 COPY . .
 
-# Expose le port
+# Expose le port (dynamique depuis PORT env var)
 EXPOSE 8000
 
-# Comando de démarrage
-CMD ["uvicorn", "agent.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Comando de démarrage - utilise la variable PORT d'environnement
+CMD ["sh", "-c", "uvicorn agent.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
