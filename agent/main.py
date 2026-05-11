@@ -104,7 +104,7 @@ async def webhook_get_verification(request: Request):
         resultado = await proveedor.validar_webhook(request)
         if resultado is not None:
             return PlainTextResponse(str(resultado))
-        return JSONResponse({"status": "ok"})
+        return JSONResponse({"status": "ok", "debug_verify_token": proveedor.verify_token})
     except Exception as e:
         logger.error(f"Error webhook GET verification: {e}")
         return JSONResponse({"error": str(e)}, status_code=400)
